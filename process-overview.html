@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Practice Operating Model</title>
+<style>
+:root {
+  --navy:          #1A2B4A;
+  --blue:          #2D6DA8;
+  --blue-mid:      #4A90C4;
+  --blue-light:    #EBF3FB;
+  --teal:          #1B7A78;
+  --teal-light:    #E2F4F3;
+  --amber:         #C4882A;
+  --amber-light:   #FDF3E3;
+  --slate:         #5D6D7E;
+  --gray-light:    #F4F6F9;
+  --border:        #D5DDE8;
+  --white:         #FFFFFF;
+  --success:       #27AE60;
+  --success-light: #E8F8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0F1923; overflow: hidden; }
+
+/* Slide system */
+.deck { position: relative; width: 100vw; height: 100vh; }
+.slide { display: none; position: absolute; inset: 0; background: var(--gray-light); overflow: auto; }
+.slide.active { display: flex; flex-direction: column; }
+.slide-inner { flex: 1; padding: 40px 56px 80px; display: flex; flex-direction: column; }
+
+/* Slide header */
+.slide-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+.slide-title  { font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+.slide-sub    { font-size: 14px; color: var(--slate); margin-top: 4px; margin-bottom: 28px; }
+
+/* Nav bar */
+.nav { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; z-index: 100; }
+.nav-btn { background: none; border: 1px solid rgba(255,255,255,0.25); color: white; padding: 5px 18px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 500; }
+.nav-btn:hover { background: rgba(255,255,255,0.1); }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-dots { display: flex; gap: 7px; }
+.nav-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; }
+.nav-dot.active { background: white; }
+.nav-info { color: rgba(255,255,255,0.5); font-size: 11px; }
+
+/* Boxes */
+.box { border-radius: 8px; padding: 12px 14px; border: 1.5px solid var(--border); }
+.box-blue    { background: var(--blue-light);    border-color: var(--blue-mid); }
+.box-teal    { background: var(--teal-light);    border-color: var(--teal); }
+.box-amber   { background: var(--amber-light);   border-color: var(--amber); }
+.box-success { background: var(--success-light); border-color: var(--success); }
+.box-navy    { background: var(--navy);          border-color: var(--navy); color: white; }
+.box-gray    { background: #E8ECF1;              border-color: #B0BEC5; }
+.box-white   { background: white;               border-color: var(--border); }
+.box-lbl     { font-size: 12px; font-weight: 700; color: var(--navy); }
+.box-navy .box-lbl { color: white; }
+.box-sub     { font-size: 11px; color: var(--slate); margin-top: 3px; line-height: 1.4; }
+.box-navy .box-sub { color: rgba(255,255,255,0.7); }
+
+/* Pills */
+.pill { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.pill-blue  { background: var(--blue-light);  color: var(--blue); }
+.pill-teal  { background: var(--teal-light);  color: var(--teal); }
+.pill-amber { background: var(--amber-light); color: var(--amber); }
+.pill-gray  { background: #E8ECF1;            color: var(--slate); }
+
+/* Zone label */
+.zone-lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); padding-bottom: 7px; border-bottom: 2px solid var(--border); margin-bottom: 10px; text-align: center; }
+
+/* Arrow */
+.arr { display: flex; align-items: center; justify-content: center; color: var(--slate); font-size: 18px; padding: 0 6px; flex-shrink: 0; }
+
+/* Divider */
+.vdiv { width: 1px; background: var(--border); flex-shrink: 0; margin: 0 4px; }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ===== SLIDE 1: FULL PROCESS OVERVIEW ===== -->
+<section class="slide active">
+<div class="slide-inner">
+  <div>
+    <div class="slide-label">01 — Overview</div>
+    <div class="slide-title">The Practice Operating Model</div>
+    <div class="slide-sub">From idea to delivered capability — the full lifecycle</div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;">
+
+    <!-- Main horizontal flow -->
+    <div style="display:flex;align-items:stretch;gap:0;">
+
+      <!-- Fan-in inputs -->
+      <div style="width:168px;flex-shrink:0;">
+        <div class="zone-lbl">Requests &amp; Ideas</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="pill pill-blue" style="justify-content:center;">Sales / BD</div>
+          <div class="pill pill-blue" style="justify-content:center;">TAMs / CS</div>
+          <div class="pill pill-blue" style="justify-content:center;">Managed Services</div>
+          <div class="pill pill-teal" style="justify-content:center;">Leadership</div>
+          <div class="pill pill-teal" style="justify-content:center;">Technical SMEs</div>
+          <div class="pill pill-teal" style="justify-content:center;">PM Research</div>
+          <div class="pill pill-gray" style="justify-content:center;">Partners / Market</div>
+          <div class="pill pill-amber" style="justify-content:center;">⚡ Bypass Tracks</div>
+        </div>
+      </div>
+
+      <!-- Converge bracket -->
+      <div style="display:flex;align-items:center;padding:0 10px;flex-shrink:0;">
+        <div style="width:32px;height:130px;border-top:2px solid var(--blue-mid);border-bottom:2px solid var(--blue-mid);border-right:2px solid var(--blue-mid);border-radius:0 8px 8px 0;position:relative;">
+          <div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--blue-mid);font-size:14px;">▶</div>
+        </div>
+      </div>
+
+      <!-- Intake & Eval -->
+      <div style="width:138px;flex-shrink:0;">
+        <div class="zone-lbl">Intake &amp; Eval</div>
+        <div style="display:flex;flex-direction:column;gap:7px;height:calc(100% - 28px);">
+          <div class="box box-blue" style="flex:1;">
+            <div class="box-lbl" style="text-align:center;">AI Intake Skill</div>
+            <div class="box-sub" style="text-align:center;">Ticket → Queue</div>
+          </div>
+          <div class="box box-amber" style="flex:1;">
+            <div class="box-lbl" style="text-align:center;">Evaluation</div>
+            <div class="box-sub" style="text-align:center;">2-pager → Decision</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arr">→</div>
+
+      <!-- PM Docs -->
+      <div style="width:150px;flex-shrink:0;">
+        <div class="zone-lbl">PM Documentation</div>
+        <div style="display:flex;flex-direction:column;gap:7px;height:calc(100% - 28px);">
+          <div class="box box-blue" style="flex:1;">
+            <div class="box-lbl" style="text-align:center;">Concept Narrative</div>
+            <div class="box-sub" style="text-align:center;">2-pager / 6-pager</div>
+          </div>
+          <div class="box box-blue" style="flex:1;">
+            <div class="box-lbl" style="text-align:center;">PRD</div>
+            <div class="box-sub" style="text-align:center;">7-section + User Stories</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arr">→</div>
+
+      <!-- Dev -->
+      <div style="width:120px;flex-shrink:0;">
+        <div class="zone-lbl">Development</div>
+        <div class="box box-navy" style="height:calc(100% - 28px);display:flex;flex-direction:column;justify-content:center;text-align:center;">
+          <div class="box-lbl" style="font-size:13px;">Development</div>
+          <div class="box-sub">Accepted process<br>PM-gated handoff</div>
+        </div>
+      </div>
+
+      <div class="arr">→</div>
+
+      <!-- Release gates -->
+      <div style="width:140px;flex-shrink:0;">
+        <div class="zone-lbl">Release &amp; Gates</div>
+        <div style="display:flex;flex-direction:column;gap:7px;height:calc(100% - 28px);">
+          <div class="box box-teal" style="flex:1;">
+            <div class="box-lbl" style="text-align:center;">Release Tier</div>
+            <div class="box-sub" style="text-align:center;">Internal → GA</div>
+          </div>
+          <div class="box box-teal" style="flex:1;">
+            <div class="box-lbl" style="text-align:center;">Pre-Release Gates</div>
+            <div class="box-sub" style="text-align:center;">4 required checks</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diverge bracket -->
+      <div style="display:flex;align-items:center;padding:0 10px;flex-shrink:0;">
+        <div style="width:32px;height:130px;border-top:2px solid var(--teal);border-bottom:2px solid var(--teal);border-left:2px solid var(--teal);border-radius:8px 0 0 8px;position:relative;">
+          <div style="position:absolute;right:-9px;top:20%;transform:translateY(-50%);color:var(--teal);font-size:11px;">▶</div>
+          <div style="position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--teal);font-size:11px;">▶</div>
+          <div style="position:absolute;right:-9px;top:80%;transform:translateY(-50%);color:var(--teal);font-size:11px;">▶</div>
+        </div>
+      </div>
+
+      <!-- Fan-out paths -->
+      <div style="flex:1;">
+        <div class="zone-lbl">Distribution Paths</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="pill pill-gray" style="justify-content:flex-start;width:100%;">🏢 Internal firm</div>
+          <div class="pill pill-blue" style="justify-content:flex-start;width:100%;">👁 Preview customers</div>
+          <div class="pill pill-blue" style="justify-content:flex-start;width:100%;">🔬 Beta customers</div>
+          <div class="pill pill-teal" style="justify-content:flex-start;width:100%;">✅ All customers (GA)</div>
+          <div class="pill pill-teal" style="justify-content:flex-start;width:100%;">💼 Account teams</div>
+          <div class="pill pill-teal" style="justify-content:flex-start;width:100%;">📣 GTM / Marketing</div>
+          <div class="pill pill-amber" style="justify-content:flex-start;width:100%;">🤝 Partners / Channel</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Feedback loop -->
+    <div style="text-align:center;padding:10px 20px;background:var(--amber-light);border:1.5px solid rgba(196,136,42,0.4);border-radius:8px;font-size:12px;color:var(--amber);font-weight:600;">
+      ↺ &nbsp; Beta &amp; GA feedback re-enters intake as structured new requests
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ===== SLIDE 2: FAN-IN ===== -->
+<section class="slide">
+<div class="slide-inner">
+  <div>
+    <div class="slide-label">02 — Intake</div>
+    <div class="slide-title">Ingest — The Fan-In</div>
+    <div class="slide-sub">Any request from any source enters through a single structured front door</div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;gap:16px;justify-content:center;">
+
+    <!-- Source columns -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;">
+
+      <div class="box box-white" style="padding:12px;">
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);">Customer-Facing</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--navy);">
+          <div>Sales / BD</div><div>SEs / Pre-sales</div><div>CS / TAMs</div><div>Managed Services</div><div>Professional Services</div><div>Support</div>
+        </div>
+        <div style="margin-top:8px;font-size:10px;color:var(--slate);line-height:1.4;">Signal: variable<br>Urgency: often high</div>
+      </div>
+
+      <div class="box box-white" style="padding:12px;">
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--teal);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);">Internal / Leadership</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--navy);">
+          <div>Leadership directives</div><div>Technical SMEs</div><div>Practice leads</div>
+        </div>
+        <div style="margin-top:8px;font-size:10px;color:var(--slate);line-height:1.4;">Signal: high, may be underdefined<br>Urgency: very high</div>
+      </div>
+
+      <div class="box box-white" style="padding:12px;">
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--teal);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);">PM-Initiated</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--navy);">
+          <div>Market research</div><div>Competitive analysis</div><div>Usage telemetry</div><div>Support patterns</div>
+        </div>
+        <div style="margin-top:8px;font-size:10px;color:var(--slate);line-height:1.4;">Signal: high, synthesized<br>Urgency: low</div>
+      </div>
+
+      <div class="box box-white" style="padding:12px;">
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--slate);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);">Partners &amp; Market</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--navy);">
+          <div>Partner requests</div><div>Regulatory shifts</div><div>Industry standards</div><div>Market signals</div>
+        </div>
+        <div style="margin-top:8px;font-size:10px;color:var(--slate);line-height:1.4;">Signal: high, industry-wide<br>Urgency: variable</div>
+      </div>
+
+      <div class="box box-amber" style="padding:12px;">
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--amber);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(196,136,42,0.3);">⚡ Bypass Tracks</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--navy);">
+          <div>Competitive response</div><div>Contract / renewal</div><div>Security incident</div>
+        </div>
+        <div style="margin-top:8px;font-size:10px;color:var(--amber);line-height:1.4;">Expedited path — still requires PM evaluation gate</div>
+      </div>
+
+    </div>
+
+    <!-- Convergence line -->
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="flex:1;height:2px;background:linear-gradient(to right,var(--blue-mid),var(--navy));"></div>
+      <div style="font-size:11px;font-weight:600;color:var(--slate);white-space:nowrap;padding:0 12px;">All sources → single front door</div>
+      <div style="flex:1;height:2px;background:linear-gradient(to left,var(--blue-mid),var(--navy));"></div>
+    </div>
+
+    <!-- AI skill + routing -->
+    <div style="display:flex;gap:12px;align-items:stretch;">
+
+      <div class="box box-navy" style="flex:1;padding:16px;">
+        <div class="box-lbl" style="font-size:13px;margin-bottom:8px;">AI Intake Skill</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.8);line-height:1.6;">
+          Accepts any input — transcript, email, message, document, notes<br>
+          Extracts structured fields first; asks only for what's missing<br>
+          Produces ticket: requestor · summary · priority signals · open questions
+        </div>
+      </div>
+
+      <div class="arr" style="font-size:22px;">→</div>
+
+      <div class="box box-white" style="flex:1;padding:16px;">
+        <div class="box-lbl" style="margin-bottom:6px;">Linear / JIRA Ticket</div>
+        <div style="font-size:11px;color:var(--slate);line-height:1.6;">
+          Triage artifact — not the evaluation document<br>
+          PM reviews queue · assigns urgency tier<br>
+          <br>
+          <strong style="color:var(--navy);">First gate:</strong> On roadmap? Net new small scope? Net new large scope?
+        </div>
+      </div>
+
+      <div class="arr" style="font-size:22px;">→</div>
+
+      <div style="flex:1;display:flex;flex-direction:column;gap:7px;">
+        <div class="box box-success" style="flex:1;padding:10px;text-align:center;">
+          <div class="box-lbl" style="font-size:11px;">On Roadmap</div>
+          <div class="box-sub">Sequencing review only</div>
+        </div>
+        <div class="box box-blue" style="flex:1;padding:10px;text-align:center;">
+          <div class="box-lbl" style="font-size:11px;">Net New — Small Scope</div>
+          <div class="box-sub">Fast-track eligible</div>
+        </div>
+        <div class="box box-amber" style="flex:1;padding:10px;text-align:center;">
+          <div class="box-lbl" style="font-size:11px;">Net New — Large Scope</div>
+          <div class="box-sub">Full evaluation required</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ===== SLIDE 3: PM & DEV PROCESS ===== -->
+<section class="slide">
+<div class="slide-inner">
+  <div>
+    <div class="slide-label">03 — Process</div>
+    <div class="slide-title">Evaluation, Documentation &amp; Dev Handoff</div>
+    <div class="slide-sub">From ticket to development-ready spec — the PM-owned process</div>
+  </div>
+
+  <div style="flex:1;display:flex;gap:14px;align-items:stretch;">
+
+    <!-- Evaluation column -->
+    <div style="flex:1;display:flex;flex-direction:column;gap:9px;">
+      <div class="zone-lbl">Evaluation</div>
+
+      <div class="box box-white" style="padding:13px;">
+        <div class="box-lbl">Pass 1 — Fast Qualification</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:5px;line-height:1.5;">
+          Source weight · Customer count · Deal at risk<br>
+          → Urgency tier: Immediate / This quarter / Backlog
+        </div>
+      </div>
+
+      <div class="box box-amber" style="padding:13px;">
+        <div class="box-lbl">Pass 2 — Structured Evaluation</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:5px;line-height:1.5;">
+          Conducted against the <strong>2-pager Concept Narrative</strong><br><br>
+          <strong>Value:</strong> Revenue · Client reach · Strategic fit · Risk of inaction<br>
+          <strong>Cost:</strong> Build · Maintenance · Support · Complexity tax<br>
+          <strong>Portfolio:</strong> Displacement · Directional alignment
+        </div>
+      </div>
+
+      <div style="display:flex;gap:7px;flex:1;align-items:stretch;">
+        <div class="box box-success" style="flex:1;padding:10px;text-align:center;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-size:20px;margin-bottom:4px;">✓</div>
+          <div class="box-lbl" style="font-size:11px;">Approved</div>
+          <div class="box-sub">Enters pipeline</div>
+        </div>
+        <div class="box box-amber" style="flex:1;padding:10px;text-align:center;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-size:20px;margin-bottom:4px;">⏸</div>
+          <div class="box-lbl" style="font-size:11px;">Hold</div>
+          <div class="box-sub">Named info needed</div>
+        </div>
+        <div class="box box-gray" style="flex:1;padding:10px;text-align:center;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-size:20px;margin-bottom:4px;">✗</div>
+          <div class="box-lbl" style="font-size:11px;">No-Go</div>
+          <div class="box-sub">Reason documented</div>
+        </div>
+      </div>
+
+      <div style="font-size:10px;color:var(--slate);text-align:center;padding:6px;background:white;border-radius:6px;border:1px solid var(--border);line-height:1.5;">
+        Every decision: rationale · conditions for reversal · what it displaces
+      </div>
+    </div>
+
+    <div class="vdiv"></div>
+
+    <!-- Documentation column -->
+    <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+      <div class="zone-lbl">PM Documentation (AI-Assisted)</div>
+
+      <div class="box box-blue" style="padding:12px;">
+        <div class="box-lbl">Concept Narrative — 2-pager</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:5px;line-height:1.5;">
+          Minimum viable evaluation document<br>
+          Problem · Who it serves · Rough outcome<br>
+          Revenue rationale · Scope signal · Known risks
+        </div>
+      </div>
+
+      <div style="text-align:center;font-size:10px;color:var(--slate);">↓ if scope is too complex for 2-pager</div>
+
+      <div class="box box-blue" style="padding:12px;opacity:0.75;">
+        <div class="box-lbl">6-Pager</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:4px;">Multiple user types · Cross-functional dependencies · Complex scope</div>
+      </div>
+
+      <div style="text-align:center;font-size:10px;color:var(--slate);">↓ on approval</div>
+
+      <div class="box box-blue" style="padding:12px;">
+        <div class="box-lbl">PRD — 7 Sections</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:5px;line-height:1.5;">
+          Problem · Context &amp; Objectives · Target Users<br>
+          Core Functionality · Architecture · Delivery Phases<br>
+          Risks, Metrics &amp; Success
+        </div>
+      </div>
+
+      <div style="text-align:center;font-size:10px;color:var(--slate);">↓</div>
+
+      <div class="box box-blue" style="padding:11px;">
+        <div class="box-lbl" style="font-size:11px;">User Stories + Acceptance Criteria</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:3px;">Engineering-ready · 7 required fields each</div>
+      </div>
+    </div>
+
+    <div class="vdiv"></div>
+
+    <!-- Dev handoff column -->
+    <div style="flex:0.75;display:flex;flex-direction:column;gap:9px;">
+      <div class="zone-lbl">Dev Handoff</div>
+
+      <div class="box box-amber" style="padding:12px;">
+        <div class="box-lbl">Dev Readiness Check</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:5px;line-height:1.5;">
+          7 failure modes — all must be clear:<br>
+          MVF scope · Inputs/outputs · State transitions<br>
+          Integrations · Dependencies · Story criteria · QA criteria
+        </div>
+      </div>
+
+      <div style="border:2px dashed var(--border);border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:10px;font-weight:600;color:var(--slate);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">↓ handoff</div>
+        <div class="box box-navy" style="padding:13px;">
+          <div class="box-lbl">Development</div>
+          <div class="box-sub">Accepted process<br>PM does not own this stage</div>
+        </div>
+        <div style="font-size:10px;font-weight:600;color:var(--slate);letter-spacing:0.08em;text-transform:uppercase;margin-top:8px;">↓ output</div>
+      </div>
+
+      <div class="box box-success" style="padding:14px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-size:22px;margin-bottom:5px;">⚡</div>
+        <div class="box-lbl">Technical Complete</div>
+        <div class="box-sub">Enters delivery &amp; distribution</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ===== SLIDE 4: FAN-OUT DELIVERY ===== -->
+<section class="slide">
+<div class="slide-inner">
+  <div>
+    <div class="slide-label">04 — Delivery</div>
+    <div class="slide-title">Distribution — The Fan-Out</div>
+    <div class="slide-sub">How completed work reaches the right audiences through the right channels</div>
+  </div>
+
+  <div style="flex:1;display:flex;gap:14px;align-items:stretch;">
+
+    <!-- Dimensions -->
+    <div style="flex:1;display:flex;flex-direction:column;gap:9px;">
+      <div class="zone-lbl">Set Before Distribution Begins</div>
+
+      <div class="box box-white" style="padding:13px;">
+        <div class="box-lbl" style="margin-bottom:8px;">Release Tier</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="pill pill-gray" style="width:100%;">Internal — firm only</div>
+          <div class="pill pill-blue" style="width:100%;">Preview — named accounts, feedback</div>
+          <div class="pill pill-blue" style="width:100%;">Beta — opted-in, marked not-GA</div>
+          <div class="pill pill-teal" style="width:100%;">GA — fully released, supported</div>
+        </div>
+      </div>
+
+      <div class="box box-white" style="padding:13px;">
+        <div class="box-lbl" style="margin-bottom:8px;">Commercial Tier</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="pill pill-gray" style="width:100%;">Not for sale</div>
+          <div class="pill pill-amber" style="width:100%;">Early access — with terms</div>
+          <div class="pill pill-teal" style="width:100%;">For sale — full commercial</div>
+        </div>
+      </div>
+
+      <div class="box box-white" style="padding:13px;">
+        <div class="box-lbl" style="margin-bottom:8px;">Packaging Type</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="pill pill-blue" style="width:100%;">New feature — expansion selling motion</div>
+          <div class="pill pill-teal" style="width:100%;">New SKU — full GTM motion required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vdiv"></div>
+
+    <!-- Pre-release gates -->
+    <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+      <div class="zone-lbl">Pre-Release Gates — All 4 Required</div>
+
+      <div class="box box-amber" style="padding:12px;flex:1;">
+        <div class="box-lbl" style="font-size:11px;">① Support &amp; Documentation</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:4px;">Docs published · Support team briefed · Escalation path defined</div>
+      </div>
+      <div class="box box-amber" style="padding:12px;flex:1;">
+        <div class="box-lbl" style="font-size:11px;">② Internal Enablement</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:4px;">Capability brief · Demo available · Talk track · Pricing guidance</div>
+      </div>
+      <div class="box box-amber" style="padding:12px;flex:1;">
+        <div class="box-lbl" style="font-size:11px;">③ Regulatory &amp; Compliance</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:4px;">Internal review · Legal sign-off · Segment restrictions documented</div>
+      </div>
+      <div class="box box-amber" style="padding:12px;flex:1;">
+        <div class="box-lbl" style="font-size:11px;">④ Sales-Readiness Gate</div>
+        <div style="font-size:11px;color:var(--slate);margin-top:4px;">Tiered by commercial tier — Early access · New feature · New SKU</div>
+      </div>
+
+      <div style="text-align:center;font-size:11px;font-weight:700;color:var(--success);background:var(--success-light);padding:8px;border-radius:6px;border:1px solid var(--success);">
+        All 4 gates confirmed → Release authorized
+      </div>
+    </div>
+
+    <div class="vdiv"></div>
+
+    <!-- Distribution paths -->
+    <div style="flex:1.1;display:flex;flex-direction:column;gap:8px;">
+      <div class="zone-lbl">Distribution Paths</div>
+
+      <div class="box box-white" style="padding:11px;">
+        <div class="box-lbl" style="font-size:11px;margin-bottom:4px;">🏢 Internal firm</div>
+        <div style="font-size:11px;color:var(--slate);">Brief · Announcement · Knowledge base update · Demo access</div>
+      </div>
+      <div class="box box-blue" style="padding:11px;">
+        <div class="box-lbl" style="font-size:11px;margin-bottom:4px;">👁 Preview &amp; 🔬 Beta customers</div>
+        <div style="font-size:11px;color:var(--slate);">Outreach · Preview terms · In-product feedback tooling · Release notes</div>
+      </div>
+      <div class="box box-teal" style="padding:11px;">
+        <div class="box-lbl" style="font-size:11px;margin-bottom:4px;">✅ All customers (GA)</div>
+        <div style="font-size:11px;color:var(--slate);">Customer announcement · Release notes · Updated docs · Key account outreach</div>
+      </div>
+      <div class="box box-teal" style="padding:11px;">
+        <div class="box-lbl" style="font-size:11px;margin-bottom:4px;">📣 Market &amp; Sales (new SKU)</div>
+        <div style="font-size:11px;color:var(--slate);">GTM campaign · Website · Demo video · SOW language · Sales catalog</div>
+      </div>
+      <div class="box box-white" style="padding:11px;">
+        <div class="box-lbl" style="font-size:11px;margin-bottom:4px;">🤝 Specialized paths</div>
+        <div style="font-size:11px;color:var(--slate);">Partner / channel brief · Developer docs · Customer training · Advisory board</div>
+      </div>
+
+      <div style="padding:8px;background:var(--amber-light);border-radius:6px;font-size:11px;color:var(--amber);font-weight:600;text-align:center;">
+        ↺ &nbsp; Distribution feedback re-enters intake
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ===== SLIDE 5: PARALLEL WORKSTREAMS ===== -->
+<section class="slide">
+<div class="slide-inner">
+  <div>
+    <div class="slide-label">05 — Parallel Work</div>
+    <div class="slide-title">Parallel Workstreams</div>
+    <div class="slide-sub">Delivery preparation runs alongside development — not after it. PM initiates all tracks at PRD sign-off.</div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;gap:10px;justify-content:center;">
+
+    <!-- Timeline header -->
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:end;">
+      <div></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);font-size:9px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:0.08em;text-align:center;padding-bottom:6px;border-bottom:2px solid var(--border);">
+        <div>PRD Sign-off</div><div>Scope Lock</div><div>Mid-Dev</div><div>Release</div>
+      </div>
+    </div>
+
+    <!-- Dev track -->
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+      <div style="font-size:11px;font-weight:700;color:var(--navy);text-align:right;padding-right:10px;">Development</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+        <div style="background:var(--navy);height:30px;border-radius:4px 0 0 4px;"></div>
+        <div style="background:var(--navy);height:30px;"></div>
+        <div style="background:var(--navy);height:30px;"></div>
+        <div style="background:var(--navy);height:30px;border-radius:0 4px 4px 0;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:10px;font-weight:600;color:white;">⚡ Complete</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;"><div></div><div style="height:1px;background:var(--border);"></div></div>
+
+    <!-- Support docs -->
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Support Docs</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.8;"></div>
+        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.7;"></div>
+        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.7;"></div>
+        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.95;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:10px;font-weight:600;color:white;">publish</div>
+      </div>
+    </div>
+
+    <!-- GTM Campaign -->
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">GTM Campaign</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+        <div style="height:24px;"></div>
+        <div style="background:var(--teal);height:24px;border-radius:4px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:600;color:white;">brief →</div>
+        <div style="background:var(--teal);height:24px;border-radius:4px;opacity:0.8;"></div>
+        <div style="background:var(--teal);height:24px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:10px;font-weight:600;color:white;">launch</div>
+      </div>
+    </div>
+
+    <!-- Sales Enablement -->
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Sales Enablement</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+        <div style="height:24px;"></div>
+        <div style="background:var(--teal);height:24px;border-radius:4px;opacity:0.9;"></div>
+        <div style="background:var(--teal);height:24px;border-radius:4px;opacity:0.8;"></div>
+        <div style="background:var(--teal);height:24px;border-radius:4px;opacity:0.5;"></div>
+      </div>
+    </div>
+
+    <!-- Legal / Commercial -->
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Legal / Commercial</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+        <div style="height:24px;"></div>
+        <div style="background:var(--amber);height:24px;border-radius:4px;opacity:0.9;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:600;color:white;">start →</div>
+        <div style="background:var(--amber);height:24px;border-radius:4px;opacity:0.7;"></div>
+        <div style="height:24px;"></div>
+      </div>
+    </div>
+
+    <!-- Demo Video -->
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Demo Video</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+        <div style="height:24px;"></div>
+        <div style="height:24px;"></div>
+        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.9;display:flex;align-items:center;padding:0 8px;font-size:10px;color:white;">record (stable build)</div>
+        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.7;"></div>
+      </div>
+    </div>
+
+    <!-- Partner Briefing -->
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Partner Briefing</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+        <div style="height:24px;"></div>
+        <div style="height:24px;"></div>
+        <div style="background:var(--slate);height:24px;border-radius:4px;opacity:0.6;"></div>
+        <div style="background:var(--slate);height:24px;border-radius:4px;opacity:0.5;"></div>
+      </div>
+    </div>
+
+    <!-- Release Notes -->
+    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Release Notes</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+        <div style="background:#D5DDE8;height:24px;border-radius:4px;"></div>
+        <div style="background:#D5DDE8;height:24px;border-radius:4px;"></div>
+        <div style="background:#D5DDE8;height:24px;border-radius:4px;"></div>
+        <div style="background:var(--navy);height:24px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:10px;font-weight:600;color:white;">final</div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div style="display:flex;gap:16px;padding:9px 14px;background:white;border:1px solid var(--border);border-radius:8px;font-size:10px;color:var(--slate);align-items:center;flex-wrap:wrap;margin-top:4px;">
+      <span style="font-weight:700;color:var(--navy);">Legend:</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:8px;background:var(--blue);border-radius:2px;"></span>Starts at PRD sign-off</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:8px;background:var(--teal);border-radius:2px;"></span>Starts at scope lock</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:8px;background:var(--amber);border-radius:2px;"></span>Legal / commercial track</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:8px;background:var(--slate);border-radius:2px;"></span>Mid-dev or later</span>
+      <span style="margin-left:auto;font-weight:700;color:var(--navy);">PM initiates all parallel workstreams at PRD sign-off</span>
+    </div>
+
+  </div>
+</div>
+</section>
+
+</div><!-- /deck -->
+
+
+<!-- Navigation -->
+<div class="nav">
+  <button class="nav-btn" id="btn-prev" onclick="go(-1)" disabled>← Prev</button>
+  <div class="nav-dots" id="dots"></div>
+  <div class="nav-info" id="info">1 of 5</div>
+  <button class="nav-btn" id="btn-next" onclick="go(1)">Next →</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsEl = document.getElementById('dots');
+let cur = 0;
+
+slides.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'nav-dot' + (i===0?' active':'');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+});
+
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = n;
+  slides[cur].classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  document.getElementById('info').textContent = (cur+1)+' of '+slides.length;
+  document.getElementById('btn-prev').disabled = cur===0;
+  document.getElementById('btn-next').disabled = cur===slides.length-1;
+}
+
+function go(d) { if(cur+d>=0 && cur+d<slides.length) goTo(cur+d); }
+
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') go(1);
+  if(e.key==='ArrowLeft' ||e.key==='ArrowUp')   go(-1);
+});
+</script>
+</body>
+</html>
