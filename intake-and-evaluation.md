@@ -47,13 +47,17 @@ The inputs that arrive loudest are often the weakest signal. The ones with the b
 
 ### AI-Enabled Intake
 
-Any input — transcript, email, message, document, or verbal summary — is processed through an intake prompt that produces a structured intake ticket:
+Any input — transcript, email, message, document, or verbal summary — is processed through an intake skill that extracts whatever it can, then asks for missing fields one at a time. It never asks for information already present in the input.
+
+The skill produces a structured intake ticket with five fields:
 
 - **Requestor** — who or what originated this
 - **Source type** — which category above
 - **Request summary** — 2 sentences max
 - **Priority signals** — urgency indicators, deals at risk, client names
 - **Open questions** — what is missing before evaluation can proceed
+
+The ticket is automatically created in the project management tool (Linear, JIRA, or equivalent) for PM review. **The ticket is a triage artifact, not an evaluation document.** It gets the request into the queue. No one evaluates off the ticket alone.
 
 ### First Gate: Routing Question
 
@@ -67,6 +71,51 @@ Before any evaluation, classify the request:
 | Net new, large scope | Not on roadmap; significant research required; will displace roadmap items | Full evaluation required |
 
 **Net new requests compete against the roadmap, not just against each other.** Adding a large net new item requires naming what gets deferred and why.
+
+---
+
+## Documentation Layer
+
+Documentation requirements scale with confidence and stakes, not with process. The right amount of detail at each gate is the minimum needed to answer that gate's question — no more.
+
+| Stage | Document | Who writes it | Gate question it answers |
+|---|---|---|---|
+| Intake | Intake ticket (AI-generated) | AI from any input | Is this routable and qualifiable? |
+| Fast qualification | Intake ticket sufficient | — | Is this urgent enough to evaluate now? |
+| Structured evaluation | 2-pager Concept Narrative | PM (AI-assisted) | Is this worth pursuing? |
+| Direction confirmed | 6-pager | PM | Are we committed to scope and resourcing? |
+| Development handoff | PRD (7-section) | PM | Is this ready to build? |
+| Engineering execution | User Stories + AC | PM | Is engineering ready to execute? |
+
+You never write the next document until the current one has cleared its gate.
+
+**The 2-pager Concept Narrative is the minimum viable evaluation document.** It is the smallest document that gives multiple stakeholders enough shared understanding to make a real decision on value, scope, and impact. It must contain:
+
+- Problem — what pain or gap is being addressed
+- Who it serves — customer segment and rough count affected
+- Rough outcome — what does done look like as a result, not a spec
+- Revenue or strategic rationale — why does the business care
+- Scope signal — feature-level, capability-level, or new dimension
+- Known risks or dependencies — what do we know we don't know
+
+**The 6-pager is an expansion, not a replacement.** When the 2-pager cannot cleanly articulate the components — multiple user types, cross-functional dependencies, things that need separate sections to be legible — the scope warrants a 6-pager. Same purpose, more room.
+
+**The requestor is never required to write a document.** The intake skill structures whatever they provide — email, transcript, verbal summary. PM writes the 2-pager once a ticket passes fast qualification, using the ticket and any supporting materials as input.
+
+### The AI-Enabled Pipeline
+
+```
+Any input (transcript, email, message, document)
+  → AI intake skill (extract first, ask for delta only)
+    → structured intake ticket
+      → Linear / JIRA (auto-created)
+        → PM reviews queue
+          → Pass 1: fast qualification
+            → AI drafts 2-pager from ticket + materials
+              → PM reviews and refines
+                → Pass 2: structured evaluation
+                  → Approved → 6-pager if scope warrants → PRD → dev
+```
 
 ---
 
@@ -92,6 +141,8 @@ Scope affects reversibility, organizational change required, and compounding unc
 - Assign urgency tier: **Immediate / This quarter / Backlog**
 
 ### Pass 2 — Structured Evaluation
+
+Pass 2 is conducted against the 2-pager Concept Narrative. The 2-pager is the document that drives this evaluation — it is not a formality that follows a decision, it is the artifact that makes the decision possible.
 
 #### Value (assess independently of cost)
 
