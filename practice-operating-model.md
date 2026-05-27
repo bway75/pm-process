@@ -2,7 +2,7 @@
 
 The question Steve (Managing Director) raised: before executing on any capability, there needs to be a defined operating model — the pipeline that takes something from initial request through delivery, distribution, and sales-readiness. Without this, the practice has depth but no repeatable way to deploy it.
 
-This document captures that model. The PM documentation process (`pm-documentation-process.md`) is the formalized artifact-production step inside **Stage 4: Delivery**.
+This document captures that model. Each stage is detailed in a dedicated document. See the reference map at the bottom of this document.
 
 ---
 
@@ -101,23 +101,34 @@ The six stages answer the full lifecycle question: **how does "something new" ge
 
 ---
 
-## Relationship to PM Documentation Process
+## Document Reference Map
 
-The PM documentation process is a sub-process of Stage 4. It governs how deliverables are structured once work is approved and in-flight. It does not govern intake, vetting, pipeline management, distribution, or the sales-readiness determination — those are addressed here.
+Each stage is covered in detail by a dedicated document. The overview stages above describe the shape of each stage; the detail documents contain the process, criteria, artifacts, and decision logic.
 
 ```
-Stage 1: Intake
-Stage 2: Vetting & Assessment
-Stage 3: Pipeline
-Stage 4: Delivery  ←  pm-documentation-process.md operates here
-Stage 5: Distribution & Awareness
-Stage 6: Sales-Readiness Gate
+Stage 1: Intake              ← intake-and-evaluation.md
+Stage 2: Vetting & Assessment← intake-and-evaluation.md
+Stage 3: Pipeline            ← governed by project management tool (Linear / JIRA)
+Stage 4: Delivery            ← pm-documentation-process.md + pm-docs-gpt-prompt.md
+Stage 5: Distribution        ← delivery-and-distribution.md
+Stage 6: Sales-Readiness     ← delivery-and-distribution.md
 ```
 
----
+### Fan-In / Fan-Out Shape
 
-## Status
+The full process has an asymmetric shape: many input paths converge toward a single accepted development process, and many delivery paths fan out from it.
 
-This model was raised by Steve (MD) on 2026-05-22 as the highest-priority structural question for the practice. The six stages above represent the questions to be answered — not yet the answers. Stage design is an internal decision that requires a dedicated planning session with the practice lead, MD, and relevant stakeholders.
-
-**Next step:** Convene the planning session. Use this document as the agenda.
+```
+[Sales] [TAMs] [CS] [Leadership] [SMEs] [PM Research] [Partners]
+                          ↓
+                   Intake & Evaluation
+                          ↓
+              PM Documentation Process (2-pager → PRD)
+                          ↓
+                 Development (accepted process)
+                          ↓
+              Delivery & Distribution (fan-out)
+                          ↓
+[Internal] [Preview] [Beta] [GA] × [Not for sale] [Early access] [For sale]
+                          ↓
+                 Feedback loop → back to Intake

@@ -32,6 +32,10 @@ The goal is a **decision-visibility system**, not a decision-making machine. The
 - Partner integrations, channel requests
 - Industry reports, standards bodies, regulatory shifts
 
+**Bypass-track sources** — these enter through expedited paths, not the standard queue
+- Competitive response — a competitor ships something requiring a reaction; enters as a leadership directive with competitive context documented
+- Renewal / contract renegotiation — commitments made during a renewal create new work items through a commercial path; must be captured and evaluated rather than absorbed informally
+
 ### Signal Quality
 
 The inputs that arrive loudest are often the weakest signal. The ones with the best signal are often the quietest.
