@@ -8,6 +8,30 @@ This document defines that process: how completed work is assessed, staged, dist
 
 ---
 
+## Parallel Workstreams
+
+Delivery preparation does not start when development completes. For any release beyond Internal tier, significant workstreams must run in parallel with development — or they will hold up release after technical completion.
+
+**The handoff from PRD approval to development is also the trigger for delivery preparation to begin.**
+
+| Workstream | When to start | Who drives |
+|---|---|---|
+| Support documentation draft | PRD finalized | PM / technical writer |
+| GTM campaign brief | Scope locked, early in dev | PM → marketing |
+| Sales enablement package | Scope locked | PM → sales |
+| Legal / commercial package (new SKU) | Scope locked | Legal / BD |
+| Demo environment planning | PRD finalized | SE team |
+| Developer documentation (if developer-facing) | PRD finalized | PM / engineering |
+| Customer training materials (if complexity warrants) | Mid-dev | PM / training |
+| Demo video production | Mid-dev, when feature is stable enough to record | PM / marketing |
+| Website and marketing content | Mid-dev | Marketing |
+| Partner / channel briefing materials | Mid-dev | PM → partner team |
+| Release notes | Throughout dev | PM |
+
+PM is responsible for identifying which workstreams apply at PRD sign-off and initiating them when development begins. Workstreams that require a stable, demonstrable build — demo video, SE walkthroughs — should be planned into the dev timeline, not bolted on at the end.
+
+---
+
 ## Two Dimensions of Release
 
 Every release sits at the intersection of two independent dimensions. Both must be set explicitly before distribution begins.
@@ -103,16 +127,92 @@ The determination that a capability is ready to enter the sales motion. This is 
 
 ---
 
+## Fan-Out by Scope
+
+The distribution motion scales with the size and significance of what was built. Scope is set at evaluation and confirmed in the PRD — the distribution requirement should never be a surprise at release.
+
+| Scope | Distribution required |
+|---|---|
+| Feature addition / iteration | Release notes, support heads-up, product update communication to existing customers |
+| Significant new capability | Full customer communication, support documentation, sales enablement, possible GTM push |
+| New product dimension / SKU | Full GTM motion, legal/commercial package, partner notification, training program, press consideration |
+
+---
+
 ## Distribution Artifacts by Audience
 
 | Audience | Artifacts |
 |---|---|
-| Internal firm | Capability brief, internal announcement, demo access, enablement package |
+| Internal firm | Capability brief, internal announcement, demo access, enablement package, internal knowledge base update |
 | Preview customers | Outreach communication, preview agreement, feedback collection mechanism |
 | Beta customers | Beta announcement, in-product feedback tooling, Beta terms, release notes |
-| All customers (GA) | Customer announcement, release notes, updated documentation, support briefing |
-| Prospects / market | External one-pager, updated product/service catalog, sales enablement package |
-| Account teams | Internal brief, talk track, objection handling, pricing guidance, SOW language |
+| All customers (GA) | Customer announcement, release notes, updated support documentation |
+| Prospects / market | External one-pager, updated product/service catalog, website update |
+| Account teams | Internal brief, talk track, objection handling, pricing guidance, SOW language (new SKU), expansion selling guide (new feature) |
+| Partner / channel | Partner-specific capability brief, partner pricing and program update, partner training (if applicable) |
+| Developer community | Developer documentation, API reference, integration guide (if developer-facing surface exists) |
+| Customer advisory board / community | Early briefing or preview access, structured feedback session |
+| Customers replacing an existing capability | Migration guide, migration timeline, end-of-life notice for replaced capability |
+
+---
+
+## Pre-Release Checklist by Tier
+
+Before any release, all items on the relevant checklist must be confirmed complete — not planned, not in progress. This is what release-ready means.
+
+### Internal
+
+- Internal capability brief written
+- Access provisioned for intended internal users
+- Internal announcement drafted
+
+### Preview
+
+- Named accounts identified and agreed
+- Preview terms or NDA in place if required
+- Account team for each preview account briefed
+- Feedback collection mechanism confirmed — channel, cadence, named owner
+- Internal brief distributed
+
+### Beta
+
+- Beta announcement drafted and approved
+- Opted-in customer list confirmed
+- In-product feedback mechanism live and tested
+- Usage telemetry active
+- Beta terms of service in place
+- Support team briefed — known issues, escalation path
+- Beta-quality release notes published
+- Beta exit criteria defined
+
+### GA — New Feature
+
+- Release notes final and published
+- Support documentation published (not drafted)
+- Support team fully briefed
+- Customer announcement drafted and approved
+- In-product notification configured (if applicable)
+- Account team briefed for key account outreach
+- Internal knowledge base updated
+- Sales enablement updated for expansion selling motion
+
+### GA — New Capability or New SKU (all GA items above, plus)
+
+- GTM campaign brief sent to marketing; campaign approved and scheduled
+- Website updated — product page, feature list, positioning
+- Demo environment updated and tested
+- SE team briefed and able to demo
+- Demo video complete (if applicable)
+- Sales enablement package complete — capability brief, talk track, objection handling, pricing guidance
+- Pricing model confirmed in sales system (new SKU)
+- SOW language written and legal-reviewed (new SKU)
+- Sales catalog updated (new SKU)
+- Partner and channel briefing complete (if partners sell or implement)
+- Customer training materials published or training session scheduled (if complexity warrants)
+- Developer documentation published (if developer-facing surface exists)
+- Migration guide published (if this replaces an existing capability)
+- Community or advisory board briefed (if applicable)
+- Regulatory and compliance review confirmed for relevant customer segments
 
 ---
 
