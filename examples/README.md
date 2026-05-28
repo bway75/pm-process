@@ -10,7 +10,7 @@ These are not real client engagements. They are constructed from the B&M OT secu
 
 | Scenario | Domain | What it demonstrates |
 |---|---|---|
-| [OT Operationalization Assessment](ot-operationalization-assessment/) | OT security | Platform-backed assessment service. Full 3-artifact chain. |
+| [OT Operationalization Assessment](ot-operationalization-assessment/) | OT security | Platform-backed assessment service. Full 6-artifact chain. |
 
 ---
 
