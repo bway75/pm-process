@@ -73,6 +73,11 @@ html, body { width: 100%; height: 100%; font-family: -apple-system, BlinkMacSyst
 
 /* Divider */
 .vdiv { width: 1px; background: var(--border); flex-shrink: 0; margin: 0 4px; }
+
+/* Scenario tabs (slide 5) */
+.scen-tab { background: white; border: 1.5px solid var(--border); color: var(--slate); padding: 6px 18px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.15s; }
+.scen-tab:hover:not(.active) { background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue); }
+.scen-tab.active { background: var(--navy); border-color: var(--navy); color: white; }
 </style>
 </head>
 <body>
@@ -567,117 +572,248 @@ html, body { width: 100%; height: 100%; font-family: -apple-system, BlinkMacSyst
   <div>
     <div class="slide-label">05 — Parallel Work</div>
     <div class="slide-title">Parallel Workstreams</div>
-    <div class="slide-sub">Delivery preparation runs alongside development — not after it. PM initiates all tracks at PRD sign-off.</div>
+    <div class="slide-sub">The overlap timeline varies by release type. Select a scenario to see which tracks run alongside development.</div>
   </div>
 
   <div style="flex:1;display:flex;flex-direction:column;gap:10px;justify-content:center;">
 
-    <!-- Timeline header -->
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:end;">
-      <div></div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);font-size:9px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:0.08em;text-align:center;padding-bottom:6px;border-bottom:2px solid var(--border);">
-        <div>PRD Sign-off</div><div>Scope Lock</div><div>Mid-Dev</div><div>Release</div>
+    <!-- Scenario tabs -->
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="scen-tab active" onclick="showScen(0,this)">Feature / MVF</button>
+      <button class="scen-tab" onclick="showScen(1,this)">Beta Release</button>
+      <button class="scen-tab" onclick="showScen(2,this)">New SKU (GA)</button>
+    </div>
+
+    <!-- ---- Scenario 0: Feature / MVF ---- -->
+    <div id="scen-0" class="scen-content" style="display:flex;flex-direction:column;gap:8px;">
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:end;">
+        <div></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);font-size:9px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:0.08em;text-align:center;padding-bottom:6px;border-bottom:2px solid var(--border);">
+          <div>PRD Sign-off</div><div>Scope Lock</div><div>Mid-Dev</div><div>Release</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-align:right;padding-right:10px;">Development</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="background:var(--navy);height:28px;border-radius:4px 0 0 4px;"></div>
+          <div style="background:var(--navy);height:28px;"></div>
+          <div style="background:var(--navy);height:28px;"></div>
+          <div style="background:var(--navy);height:28px;border-radius:0 4px 4px 0;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">⚡ Done</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Support Docs</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="background:var(--blue);height:22px;border-radius:4px;opacity:0.8;"></div>
+          <div style="background:var(--blue);height:22px;border-radius:4px;opacity:0.7;"></div>
+          <div style="background:var(--blue);height:22px;border-radius:4px;opacity:0.7;"></div>
+          <div style="background:var(--blue);height:22px;border-radius:4px;opacity:0.95;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">publish</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Internal Brief</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:22px;"></div>
+          <div style="height:22px;"></div>
+          <div style="background:var(--slate);height:22px;border-radius:4px;opacity:0.6;display:flex;align-items:center;padding:0 8px;font-size:10px;color:white;">draft</div>
+          <div style="background:var(--slate);height:22px;border-radius:4px;opacity:0.9;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">send</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Release Notes</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="background:#D5DDE8;height:22px;border-radius:4px;"></div>
+          <div style="background:#D5DDE8;height:22px;border-radius:4px;"></div>
+          <div style="background:#D5DDE8;height:22px;border-radius:4px;"></div>
+          <div style="background:var(--navy);height:22px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">final</div>
+        </div>
+      </div>
+
+      <div style="padding:8px 12px;background:#EAF7F0;border-left:3px solid #2A8C5A;border-radius:4px;font-size:11px;color:#1B5E3B;font-weight:500;">
+        Minimal parallel coordination. No GTM, no demo video, no legal or partner work.
       </div>
     </div>
 
-    <!-- Dev track -->
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
-      <div style="font-size:11px;font-weight:700;color:var(--navy);text-align:right;padding-right:10px;">Development</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
-        <div style="background:var(--navy);height:30px;border-radius:4px 0 0 4px;"></div>
-        <div style="background:var(--navy);height:30px;"></div>
-        <div style="background:var(--navy);height:30px;"></div>
-        <div style="background:var(--navy);height:30px;border-radius:0 4px 4px 0;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:10px;font-weight:600;color:white;">⚡ Complete</div>
+    <!-- ---- Scenario 1: Beta Release ---- -->
+    <div id="scen-1" class="scen-content" style="display:none;flex-direction:column;gap:8px;">
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:end;">
+        <div></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);font-size:9px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:0.08em;text-align:center;padding-bottom:6px;border-bottom:2px solid var(--border);">
+          <div>PRD Sign-off</div><div>Scope Lock</div><div>Mid-Dev</div><div>Release</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-align:right;padding-right:10px;">Development</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="background:var(--navy);height:28px;border-radius:4px 0 0 4px;"></div>
+          <div style="background:var(--navy);height:28px;"></div>
+          <div style="background:var(--navy);height:28px;"></div>
+          <div style="background:var(--navy);height:28px;border-radius:0 4px 4px 0;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">⚡ Done</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:10px;color:var(--amber);font-weight:700;text-align:right;padding-right:10px;">⚠ PRD Req.</div>
+        <div style="background:var(--amber-light);border:1px solid var(--amber);border-radius:4px;padding:4px 8px;font-size:10px;color:var(--amber);font-weight:600;">
+          In-product feedback tooling + usage telemetry must be specified in the PRD
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Beta Announcement</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:22px;"></div>
+          <div style="height:22px;"></div>
+          <div style="background:var(--teal);height:22px;border-radius:4px;opacity:0.7;display:flex;align-items:center;padding:0 8px;font-size:10px;color:white;">draft</div>
+          <div style="background:var(--teal);height:22px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">send</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Beta Terms</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:22px;"></div>
+          <div style="background:var(--amber);height:22px;border-radius:4px;opacity:0.85;display:flex;align-items:center;padding:0 8px;font-size:10px;color:white;">draft →</div>
+          <div style="background:var(--amber);height:22px;border-radius:4px;opacity:0.7;"></div>
+          <div style="background:var(--amber);height:22px;border-radius:4px;opacity:0.5;"></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Support Briefing</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:22px;"></div>
+          <div style="height:22px;"></div>
+          <div style="background:var(--blue);height:22px;border-radius:4px;opacity:0.8;display:flex;align-items:center;padding:0 8px;font-size:10px;color:white;">brief</div>
+          <div style="background:var(--blue);height:22px;border-radius:4px;opacity:0.7;"></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Release Notes</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="background:#D5DDE8;height:22px;border-radius:4px;"></div>
+          <div style="background:#D5DDE8;height:22px;border-radius:4px;"></div>
+          <div style="background:#D5DDE8;height:22px;border-radius:4px;"></div>
+          <div style="background:var(--navy);height:22px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">beta notes</div>
+        </div>
+      </div>
+
+      <div style="padding:8px 12px;background:var(--blue-light);border-left:3px solid var(--blue-mid);border-radius:4px;font-size:11px;color:var(--blue);font-weight:500;">
+        Feedback tooling and telemetry are PRD requirements. No GTM, no pricing/legal, no demo video for public.
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;"><div></div><div style="height:1px;background:var(--border);"></div></div>
+    <!-- ---- Scenario 2: New SKU (GA) ---- -->
+    <div id="scen-2" class="scen-content" style="display:none;flex-direction:column;gap:8px;">
 
-    <!-- Support docs -->
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
-      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Support Docs</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
-        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.8;"></div>
-        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.7;"></div>
-        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.7;"></div>
-        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.95;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:10px;font-weight:600;color:white;">publish</div>
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:end;">
+        <div></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);font-size:9px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:0.08em;text-align:center;padding-bottom:6px;border-bottom:2px solid var(--border);">
+          <div>PRD Sign-off</div><div>Scope Lock</div><div>Mid-Dev</div><div>Release</div>
+        </div>
       </div>
-    </div>
 
-    <!-- GTM Campaign -->
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
-      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">GTM Campaign</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
-        <div style="height:24px;"></div>
-        <div style="background:var(--teal);height:24px;border-radius:4px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:600;color:white;">brief →</div>
-        <div style="background:var(--teal);height:24px;border-radius:4px;opacity:0.8;"></div>
-        <div style="background:var(--teal);height:24px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:10px;font-weight:600;color:white;">launch</div>
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-align:right;padding-right:10px;">Development</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="background:var(--navy);height:24px;border-radius:4px 0 0 4px;"></div>
+          <div style="background:var(--navy);height:24px;"></div>
+          <div style="background:var(--navy);height:24px;"></div>
+          <div style="background:var(--navy);height:24px;border-radius:0 4px 4px 0;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">⚡ Done</div>
+        </div>
       </div>
-    </div>
 
-    <!-- Sales Enablement -->
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
-      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Sales Enablement</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
-        <div style="height:24px;"></div>
-        <div style="background:var(--teal);height:24px;border-radius:4px;opacity:0.9;"></div>
-        <div style="background:var(--teal);height:24px;border-radius:4px;opacity:0.8;"></div>
-        <div style="background:var(--teal);height:24px;border-radius:4px;opacity:0.5;"></div>
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Support Docs</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="background:var(--blue);height:20px;border-radius:4px;opacity:0.8;"></div>
+          <div style="background:var(--blue);height:20px;border-radius:4px;opacity:0.7;"></div>
+          <div style="background:var(--blue);height:20px;border-radius:4px;opacity:0.7;"></div>
+          <div style="background:var(--blue);height:20px;border-radius:4px;opacity:0.95;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">publish</div>
+        </div>
       </div>
-    </div>
 
-    <!-- Legal / Commercial -->
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
-      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Legal / Commercial</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
-        <div style="height:24px;"></div>
-        <div style="background:var(--amber);height:24px;border-radius:4px;opacity:0.9;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:600;color:white;">start →</div>
-        <div style="background:var(--amber);height:24px;border-radius:4px;opacity:0.7;"></div>
-        <div style="height:24px;"></div>
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">GTM Campaign</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:20px;"></div>
+          <div style="background:var(--teal);height:20px;border-radius:4px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:600;color:white;">brief →</div>
+          <div style="background:var(--teal);height:20px;border-radius:4px;opacity:0.8;"></div>
+          <div style="background:var(--teal);height:20px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">launch</div>
+        </div>
       </div>
-    </div>
 
-    <!-- Demo Video -->
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
-      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Demo Video</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
-        <div style="height:24px;"></div>
-        <div style="height:24px;"></div>
-        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.9;display:flex;align-items:center;padding:0 8px;font-size:10px;color:white;">record (stable build)</div>
-        <div style="background:var(--blue);height:24px;border-radius:4px;opacity:0.7;"></div>
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Sales Enablement</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:20px;"></div>
+          <div style="background:var(--teal);height:20px;border-radius:4px;opacity:0.9;"></div>
+          <div style="background:var(--teal);height:20px;border-radius:4px;opacity:0.8;"></div>
+          <div style="background:var(--teal);height:20px;border-radius:4px;opacity:0.5;"></div>
+        </div>
       </div>
-    </div>
 
-    <!-- Partner Briefing -->
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
-      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Partner Briefing</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
-        <div style="height:24px;"></div>
-        <div style="height:24px;"></div>
-        <div style="background:var(--slate);height:24px;border-radius:4px;opacity:0.6;"></div>
-        <div style="background:var(--slate);height:24px;border-radius:4px;opacity:0.5;"></div>
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Legal / Commercial</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:20px;"></div>
+          <div style="background:var(--amber);height:20px;border-radius:4px;opacity:0.9;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:600;color:white;">start →</div>
+          <div style="background:var(--amber);height:20px;border-radius:4px;opacity:0.7;"></div>
+          <div style="height:20px;"></div>
+        </div>
       </div>
-    </div>
 
-    <!-- Release Notes -->
-    <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
-      <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Release Notes</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
-        <div style="background:#D5DDE8;height:24px;border-radius:4px;"></div>
-        <div style="background:#D5DDE8;height:24px;border-radius:4px;"></div>
-        <div style="background:#D5DDE8;height:24px;border-radius:4px;"></div>
-        <div style="background:var(--navy);height:24px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:10px;font-weight:600;color:white;">final</div>
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Demo Video</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:20px;"></div>
+          <div style="height:20px;"></div>
+          <div style="background:var(--blue);height:20px;border-radius:4px;opacity:0.9;display:flex;align-items:center;padding:0 8px;font-size:10px;color:white;">record (stable)</div>
+          <div style="background:var(--blue);height:20px;border-radius:4px;opacity:0.7;"></div>
+        </div>
       </div>
-    </div>
 
-    <!-- Legend -->
-    <div style="display:flex;gap:16px;padding:9px 14px;background:white;border:1px solid var(--border);border-radius:8px;font-size:10px;color:var(--slate);align-items:center;flex-wrap:wrap;margin-top:4px;">
-      <span style="font-weight:700;color:var(--navy);">Legend:</span>
-      <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:8px;background:var(--blue);border-radius:2px;"></span>Starts at PRD sign-off</span>
-      <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:8px;background:var(--teal);border-radius:2px;"></span>Starts at scope lock</span>
-      <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:8px;background:var(--amber);border-radius:2px;"></span>Legal / commercial track</span>
-      <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:8px;background:var(--slate);border-radius:2px;"></span>Mid-dev or later</span>
-      <span style="margin-left:auto;font-weight:700;color:var(--navy);">PM initiates all parallel workstreams at PRD sign-off</span>
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Partner Briefing</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:20px;"></div>
+          <div style="height:20px;"></div>
+          <div style="background:var(--slate);height:20px;border-radius:4px;opacity:0.6;"></div>
+          <div style="background:var(--slate);height:20px;border-radius:4px;opacity:0.5;"></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Website Updates</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="height:20px;"></div>
+          <div style="height:20px;"></div>
+          <div style="background:var(--slate);height:20px;border-radius:4px;opacity:0.5;display:flex;align-items:center;padding:0 8px;font-size:10px;color:white;">draft</div>
+          <div style="background:var(--slate);height:20px;border-radius:4px;opacity:0.9;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">live</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;">
+        <div style="font-size:11px;color:var(--navy);text-align:right;padding-right:10px;">Release Notes</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+          <div style="background:#D5DDE8;height:20px;border-radius:4px;"></div>
+          <div style="background:#D5DDE8;height:20px;border-radius:4px;"></div>
+          <div style="background:#D5DDE8;height:20px;border-radius:4px;"></div>
+          <div style="background:var(--navy);height:20px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font-size:10px;font-weight:600;color:white;">final</div>
+        </div>
+      </div>
+
+      <div style="padding:8px 12px;background:var(--amber-light);border-left:3px solid var(--amber);border-radius:4px;font-size:11px;color:var(--amber);font-weight:500;">
+        Heaviest parallel coordination. GTM, legal, and sales enablement all start at scope lock.
+      </div>
     </div>
 
   </div>
@@ -719,6 +855,13 @@ function goTo(n) {
 }
 
 function go(d) { if(cur+d>=0 && cur+d<slides.length) goTo(cur+d); }
+
+function showScen(n, btn) {
+  document.querySelectorAll('.scen-content').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.scen-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('scen-'+n).style.display = 'flex';
+  btn.classList.add('active');
+}
 
 document.addEventListener('keydown', e => {
   if(e.key==='ArrowRight'||e.key==='ArrowDown') go(1);
