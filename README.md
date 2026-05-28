@@ -2,48 +2,63 @@
 
 How something new gets requested, reviewed, documented, built, delivered, and communicated.
 
-This repo covers two levels:
+This repo is the operating model scaffolding — the end-to-end pipeline Steve calls "the machine." It covers what's owned by PM: intake through the artifacts that hand off to Dev, and the delivery / distribution fan-out after Dev completes. The Dev execution stage is intentionally not defined here; that's owned by Engineering.
 
-1. **The operating model** — the end-to-end pipeline from intake to sales-readiness (Steve's "machine")
-2. **The PM documentation process** — the artifact-production framework that operates inside the delivery stage
+---
 
-## What's Here
+## Start Here
 
-| File | What It Is |
-|---|---|
-| [practice-operating-model.md](practice-operating-model.md) | The six-stage operating model — intake through sales-readiness gate |
-| [pm-documentation-process.md](pm-documentation-process.md) | PM doc process — key principles and decision rules for the delivery stage |
-| [pm-docs-gpt-prompt.md](pm-docs-gpt-prompt.md) | Full PM doc spec — GPT manifest, Claude setup guide, complete instructions |
+**[process-overview.html](process-overview.html)** — Five-slide visual overview of the full pipeline. Open in a browser. No install required.
 
-## The Operating Model
+---
 
-```
-Intake → Vetting & Assessment → Pipeline → Delivery → Distribution & Awareness → Sales-Readiness Gate
-```
+## What's in This Repo
 
-The PM documentation process (below) operates inside **Delivery**.
+| File | Stage | What It Covers |
+|---|---|---|
+| [practice-operating-model.md](practice-operating-model.md) | All stages | Six-stage overview and document reference map |
+| [intake-and-evaluation.md](intake-and-evaluation.md) | Stages 1–2 | Request intake, signal quality, evaluation criteria, routing, and go/no-go decision model |
+| [pm-documentation-process.md](pm-documentation-process.md) | Stage 4 | PM artifact-production process — Concept Narrative through PRD and User Stories |
+| [pm-docs-gpt-prompt.md](pm-docs-gpt-prompt.md) | Stage 4 | Full PM doc spec — deployable as a ChatGPT or Claude custom instruction set |
+| [delivery-and-distribution.md](delivery-and-distribution.md) | Stages 5–6 | Release tiers, commercial tiers, parallel workstreams, pre-release gates, and distribution fan-out |
 
-## The PM Documentation Process
+---
 
-```
-Concept Narrative → 6-Pager → PRD (7-Section) → JTBD & User Stories → Acceptance Plan → Iteration Planning
-```
-
-For larger initiatives, use the JTBD-sliced flow:
+## The Pipeline Shape
 
 ```
-MVP Definitions → PRDs per JTBD/function → User Stories → Acceptance Criteria / Test Cases
+[Sales] [TAMs] [CS] [Leadership] [SMEs] [PM Research] [Partners]
+                          ↓
+                   Intake & Evaluation
+                          ↓
+              PM Documentation Process
+              (Concept Narrative → PRD → User Stories)
+                          ↓
+              Development  ← Engineering-owned, not defined here
+                          ↓
+              Delivery & Distribution (fan-out)
+                          ↓
+    [Internal] [Preview] [Beta] [GA] × [Not for sale] [Early access] [For sale]
+                          ↓
+                   Feedback → back to Intake
 ```
 
-An **umbrella Initiative Brief** holds the JTBD-sliced flow together.
+---
 
-## Quick Start (PM Docs)
+## What's Defined
 
-1. Read `pm-docs-gpt-prompt.md` — it has the full operating spec
-2. Deploy to ChatGPT (paste Instructions section into GPT Configure UI) or Claude (paste into Project custom instructions)
-3. Update the Role line in the instructions to reflect your domain before deploying
-4. Upload your own domain reference document as the knowledge file
+- How requests enter, get evaluated, get routed, and get a go/no-go decision
+- The PM artifact sequence that gates development (what Dev receives before a ticket is ready)
+- The delivery and distribution model after development completes
+- Parallel workstream timelines by release type (Feature/MVF, Beta, New SKU)
 
-## Supported PM Deliverables
+## What's Intentionally Not Defined Here
 
-Concept Narrative · 6-Pager · PRD (7-Section) · JTBD & User Stories · Feature & Outcome Progression · Iteration Planning · Acceptance Plan · PR/FAQ · Executive Slide Summary
+- **Dev execution process** — owned by Engineering; what matters to this model is what artifacts Dev receives and what signals Dev-complete
+- **Specific tooling** — Linear, JIRA, specific AI skills, deployment infrastructure — these are implementation decisions that follow from the operating model, not part of the scaffolding itself
+
+---
+
+## Version Note
+
+This is a V0.1 operating model — defined at the handoff and decision-gate level. Individual stage subprocesses are owned by their respective functions and will evolve as real work moves through the pipeline. The intent is a working model, not a locked procedure.
