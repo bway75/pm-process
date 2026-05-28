@@ -12,6 +12,12 @@ This repo is the operating model scaffolding — the end-to-end pipeline Steve c
 
 ---
 
+## Examples
+
+The [`examples/`](examples/) directory contains a synthetic end-to-end run through the process — Concept Narrative → PRD → User Stories — for an OT security capability built from the B&M research corpus. Shows what the PM→Dev handoff actually looks like.
+
+---
+
 ## What's in This Repo
 
 | File | Stage | What It Covers |
