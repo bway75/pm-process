@@ -297,3 +297,5 @@ Stage 4: Delivery       ← pm-documentation-process.md operates here
 Stage 5: Distribution & Awareness   ← this document
 Stage 6: Sales-Readiness Gate       ← this document
 ```
+
+See `build-vs-release-process.md` for how development output becomes an eligible release candidate before it reaches this stage.

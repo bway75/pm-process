@@ -26,6 +26,7 @@ The [`examples/`](examples/) directory contains a synthetic end-to-end run throu
 | [intake-and-evaluation.md](intake-and-evaluation.md) | Stages 1–2 | Request intake, signal quality, evaluation criteria, routing, and go/no-go decision model |
 | [pm-documentation-process.md](pm-documentation-process.md) | Stage 4 | PM artifact-production process — Concept Narrative through PRD and User Stories |
 | [pm-docs-gpt-prompt.md](pm-docs-gpt-prompt.md) | Stage 4 | Full PM doc spec — deployable as a ChatGPT or Claude custom instruction set |
+| [build-vs-release-process.md](build-vs-release-process.md) | Stage 4 → 5 | Build vs. release ownership split, how a release ties back to roadmap items and sprint effort, and suggested evolutions (eligibility gating, artifact identity, rollback) |
 | [delivery-and-distribution.md](delivery-and-distribution.md) | Stages 5–6 | Release tiers, commercial tiers, parallel workstreams, pre-release gates, and distribution fan-out |
 
 ---
