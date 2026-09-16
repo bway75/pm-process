@@ -42,10 +42,6 @@ Items 6 and 7 are coupled (rollback needs an addressable artifact to roll back t
 - **Feature flags / dark launches**: appropriate once volume and customer count grow; not deferred because it is hard, deferred because it does not solve a real problem yet at low scale.
 - **Canary / progressive rollout**: appropriate once there is more than one distribution channel and rollback exists. At low scale, a single distribution channel with a solid rollback plan can substitute.
 
-### To Verify, Not to Decide
-
-- **Trunk-based development**: an assumption to confirm with engineering directly, not something a PM proposal should mandate.
-
 ### Complementary, Does Not Block the Above
 
 - **DORA measurement**: a set of four measurements, from Google's DevOps Research and Assessment group (the book *Accelerate*), that reliably separate high-performing engineering organizations from low-performing ones:
@@ -73,7 +69,6 @@ This document covers the build-to-release decision, what happens before a releas
 - Artifact Promotion Best Practices for Reliable CI/CD, https://www.devopsness.com/blog/artifact-promotion-instead-of-rebuilds-the-release-control-pattern-that-stopped-drift-2026-03-26
 - Immutable Artifacts, MinimumCD Practice Guide, https://beyond.minimumcd.org/docs/reference/practices/immutable-artifacts/
 - DORA, four keys, https://dora.dev/guides/dora-metrics-four-keys/
-- Trunk-based vs. Feature-based Development, Harness, https://www.harness.io/blog/trunk-based-vs-feature-based-development
 - How to Use Feature Flags for Trunk-Based Development, Flagsmith, https://www.flagsmith.com/blog/trunk-based-development-feature-flags
 - Using Semantic Versioning to Simplify Release Management, AWS, https://aws.amazon.com/blogs/devops/using-semantic-versioning-to-simplify-release-management/
 - Keep a Changelog, Quackback, https://quackback.io/blog/keep-a-changelog
