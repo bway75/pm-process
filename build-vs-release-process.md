@@ -11,6 +11,7 @@ A set of suggested evolutions to the existing release process follows separately
 - **Build**: owned entirely by engineering. Cut whenever, no ceremony required. A minimum build cadence exists in practice already (nightly), which satisfies any minimum cadence a team would want. No cadence requirement needs to be pre-mandated; if cadence ever scales back, that is the trigger to revisit it.
 - **Release**: a separate decision, owned by a small core group, independent/neutral manager, product, development lead, and a sales lead once staffed, with a customer-facing operations lead present in an advisory, non-voting capacity.
 - A release is a curated bundle of one or more builds, selected because they deliver roadmap items or PRD features that are fully done, not a calendar event and not a size threshold. This is how a release ties back to the roadmap: each release names the roadmap item(s) it satisfies, and each roadmap item's status can be traced to the release that delivered it. The same logic ties a release to sprint effort: a sprint's completed work becomes build content; a release is declared once enough of that content, across one or more sprints, is fully done.
+- Every release also declares an explicit **purpose and objective**: what it is meant to accomplish, not only which builds it bundles. Roadmap burn-down is one valid purpose, not the only one — a release can exist to prove something specific (a research/experimental pass, a release candidate validating a named handful of things) without checking off every item on the roadmap. The declared purpose determines which of the four release tiers (Internal, Preview, Beta, GA — see `delivery-and-distribution.md`) the release targets, and scopes what State 2 of the eligibility gate below needs to prove for that release specifically, rather than open-ended testing of everything that could be tested.
 - What this protects against: code reaching production without the downstream work happening (documentation, support enablement, sales readiness, and where scoped, legal), not slow releases.
 
 ## Suggested Evolutions to the Release Process
@@ -19,7 +20,7 @@ The following are suggestions for how a release process could evolve to support 
 
 1. **Release-eligibility gate**: a roadmap item or PRD feature must fully clear a three-state definition of done before it can be bundled into a release:
    - State 1: mechanical checks pass (build, QA, lint/tests)
-   - State 2: evidence the feature was actually exercised against its written acceptance criteria
+   - State 2: evidence the feature was actually exercised against its written acceptance criteria, scoped to the release's declared purpose — a research or beta release names the specific handful of things it needs to prove, rather than requiring exhaustive testing of everything that could be tested
    - State 3: human review confirms intent and edge cases, not just that it runs
 
    This turns "have we moved the needle enough" from a judgment call into a checkable fact. The readiness-review group still decides timing and packaging, but decides on top of a fact, not a feeling.
@@ -61,10 +62,11 @@ Items 6 and 7 are coupled (rollback needs an addressable artifact to roll back t
 2. Confirmation of current branching practice with engineering.
 3. Exact composition and voting rule for the release-readiness group.
 4. What a version number should formally signal, semantic versioning conventions not yet formalized.
+5. Terminology for release purpose (research, beta/release-candidate, internal production, customer-ready) is not yet agreed across the team. Labeling a release "research" or "experimental" may carry commercial or licensing implications (e.g., customer/entitlement counting) that need legal or commercial input before the terms are formalized.
 
 ## Relationship to Delivery and Distribution
 
-This document covers the build-to-release decision, what happens before a release candidate exists. `delivery-and-distribution.md` (Stages 5 to 6) picks up once development is complete and a release candidate is ready to be assessed, staged, and distributed. This document is the piece that precedes it.
+This document covers the build-to-release decision, what happens before a release candidate exists. `delivery-and-distribution.md` (Stages 5 to 6) picks up once development is complete and a release candidate is ready to be assessed, staged, and distributed. This document is the piece that precedes it. The four release tiers a release's declared purpose maps to (Internal, Preview, Beta, GA) are defined there, not duplicated here.
 
 ## References
 
